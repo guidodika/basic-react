@@ -1,0 +1,8 @@
+{
+  "name": "Basic React",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/guidodika/learn-reactjs.git",
+  "author": "guidodika <guidodikafirguston.mail@gmail.com>",
+  "license": "MIT"
+}
