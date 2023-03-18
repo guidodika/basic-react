@@ -14,18 +14,45 @@ console.log("Hello Guys Hai");
 
 // const element = <div className="box"></div>;
 
-function eventClick() {
-  alert("Hello World");
+// function eventClick() {
+//   alert("Hello World");
+// }
+
+// function eventClickWithParam(msg) {
+//   alert(msg);
+// }
+
+// const element = (
+//   <button onClick={eventClickWithParam.bind(this, "Aku diklik nih")}>
+//     Klik Disini!
+//   </button>
+// );
+
+function App() {
+  const [count, setState] = React.useState(0);
+
+  // const count = state[0];
+  // const setState = state[1];
+
+  return (
+    <div>
+      <button
+        onClick={function () {
+          setState(count - 1);
+        }}
+      >
+        -
+      </button>
+      <span>{count}</span>
+      <button
+        onClick={function () {
+          setState(count + 1);
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
 }
 
-function eventClickWithParam(msg) {
-  alert(msg);
-}
-
-const element = (
-  <button onClick={eventClickWithParam.bind(this, "Aku diklik nih")}>
-    Klik Disini!
-  </button>
-);
-
-ReactDOM.render(element, root);
+ReactDOM.render(<App />, root);
