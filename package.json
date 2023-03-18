@@ -4,5 +4,15 @@
   "main": "index.js",
   "repository": "https://github.com/guidodika/learn-reactjs.git",
   "author": "guidodika <guidodikafirguston.mail@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/preset-react": "^7.18.6",
+    "lite-server": "^2.6.1"
+  },
+  "scripts": {
+    "build": "babel src --out-dir public",
+    "start": "lite-server --baseDir public"
+  }
 }
