@@ -12,6 +12,20 @@ console.log("Hello Guys Hai");
 //   ></div>
 // );
 
-const element = <div className="box"></div>;
+// const element = <div className="box"></div>;
+
+function eventClick() {
+  alert("Hello World");
+}
+
+function eventClickWithParam(msg) {
+  alert(msg);
+}
+
+const element = (
+  <button onClick={eventClickWithParam.bind(this, "Aku diklik nih")}>
+    Klik Disini!
+  </button>
+);
 
 ReactDOM.render(element, root);
