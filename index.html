@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@17/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+    ></script>
+    <script type="text/babel">
+      const root = document.querySelector("#root");
+      /**console.log(root)
+        const element = document.createElement("h1");
+        element.textContent = 'Hello World';
+        element.className = 'heading-1';
+        console.log(element);
+        root.appendChild(element);**/
+
+      /**const element = React.createElement('h1', {
+            children: 'Hello World React',
+            className: 'heading-1'
+        }); **/
+
+      /**const p1 = React.createElement('h1', {
+            children: 'Hello Paragraf 1'
+        })
+
+        const p2 = React.createElement('h1', {
+            children: 'Hello Paragraf 2'
+        })
+
+        const element = React.createElement(React.Fragment, {
+            children: [p1, p2]
+        }) **/
+
+      //   const element = React.createElement(
+      //     "ul",
+      //     {
+      //       className: "table",
+      //     },
+      //     React.createElement("li", null, "Apple"),
+      //     React.createElement("li", null, "Grape"),
+      //     React.createElement("li", null, "Watermelon")
+      //   );
+
+      //   const element = (
+      //     <ul>
+      //       <li>Apple</li>
+      //       <li>Grape</li>
+      //       <li>Watermelon</li>
+      //     </ul>
+      //   );
+
+      //   const name = "Budi";
+      //   function toUpperCase(text) {
+      //     return text.toUpperCase();
+      //   }
+      //   const element_image = (
+      //     <img src="https://cdnwpedutorenews.gramedia.net/wp-content/uploads/2022/03/08154702/google.jpg" />
+      //   );
+
+      //   const element_date = (
+      //     <p>Tanggal hari ini adalah {new Date().toLocaleDateString()}</p>
+      //   );
+
+      //   const class_Name = "heading-1";
+      //   const element = (
+      //     <p className={class_Name}>Nama Saya {toUpperCase(name)} </p>
+      //   );
+      //   console.log(element);
+
+      //React Component
+      // function Hello(props) {
+      //   return (
+      //     <p>
+      //       Hallo nama saya <b>{props.name}</b>
+      //     </p>
+      //   );
+      // }
+
+      // const element = (
+      //   <>
+      //     <Hello name="Guido" />
+      //     <Hello name="Dika" />
+      //     <Hello name="Firguston" />
+      //   </>
+      // );
+
+      //Rendering
+
+      function tick() {
+        const element = (
+          <div>
+            <h1>Jam Sekarang</h1>
+            <h2>{new Date().toLocaleTimeString()}</h2>
+          </div>
+        );
+        ReactDOM.render(element, root);
+
+        // const element = `
+        //   <div>
+        //     <h1>Jam Sekarang</h1>
+        //     <h2>${new Date().toLocaleTimeString()}</h2>
+        //   </div>
+        // `;
+        // root.innerHTML = element;
+      }
+
+      setInterval(function () {
+        tick();
+      }, 1000);
+    </script>
+  </body>
+</html>
