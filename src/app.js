@@ -4,12 +4,11 @@ function App() {
   const [click, setClick] = React.useState(false);
   const [count, setCount] = React.useState(0);
 
-  React.useEffect(
-    function () {
-      console.log(document.querySelector("#judul"));
-    },
-    [click, count]
-  );
+  /*gunakan empty array [] jika function ini hanya di render sekali saja 
+  walaupun state berubah*/
+  React.useEffect(function () {
+    console.log(document.querySelector("#judul"));
+  }, []);
 
   return (
     <>

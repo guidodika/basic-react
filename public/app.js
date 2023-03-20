@@ -2,9 +2,12 @@ const root = document.querySelector("#root");
 function App() {
   const [click, setClick] = React.useState(false);
   const [count, setCount] = React.useState(0);
+
+  /*gunakan empty array [] jika function ini hanya di render sekali saja 
+  walaupun state berubah*/
   React.useEffect(function () {
     console.log(document.querySelector("#judul"));
-  }, [click, count]);
+  }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
     id: "judul"
   }, "Hello ini judul"), /*#__PURE__*/React.createElement("button", {
