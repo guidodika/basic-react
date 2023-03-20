@@ -6,7 +6,8 @@ function App() {
   return (
     <>
       <h1>Halaman Login</h1>
-      <p>{login ? <b>Berhasil Login</b> : <i>Gagal Login</i>}</p>
+      {/* jika tidak ingin ada kondisi else, bisa pakai && */}
+      <p>{login && <b>Berhasil Login</b>}</p>
       <button
         onClick={function () {
           setLogin(true);
