@@ -1,58 +1,38 @@
 const root = document.querySelector("#root");
 
-console.log("Hello Guys Hai");
-
-// const element = (
-//   <div
-//     style={{
-//       width: 200,
-//       height: 200,
-//       backgroundColor: "blue",
-//     }}
-//   ></div>
-// );
-
-// const element = <div className="box"></div>;
-
-// function eventClick() {
-//   alert("Hello World");
-// }
-
-// function eventClickWithParam(msg) {
-//   alert(msg);
-// }
-
-// const element = (
-//   <button onClick={eventClickWithParam.bind(this, "Aku diklik nih")}>
-//     Klik Disini!
-//   </button>
-// );
-
 function App() {
-  const [count, setState] = React.useState(0);
+  const [click, setClick] = React.useState(false);
+  const [count, setCount] = React.useState(0);
 
-  // const count = state[0];
-  // const setState = state[1];
+  React.useEffect(
+    function () {
+      console.log(document.querySelector("#judul"));
+    },
+    [click, count]
+  );
 
   return (
-    <div>
+    <>
+      <h1 id="judul">Hello ini judul</h1>
       <button
         onClick={function () {
-          setState(count - 1);
+          setClick(true);
         }}
       >
-        -
+        Klik Disini
       </button>
-      <span>{count}</span>
       <button
         onClick={function () {
-          setState(count + 1);
+          setCount(count + 1);
         }}
       >
-        +
+        Tambah
       </button>
-    </div>
+      <p>{count}</p>
+    </>
   );
 }
 
-ReactDOM.render(<App />, root);
+setTimeout(function () {
+  ReactDOM.render(<App />, root);
+}, 1000);

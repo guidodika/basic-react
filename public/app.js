@@ -1,46 +1,22 @@
 const root = document.querySelector("#root");
-console.log("Hello Guys Hai");
-
-// const element = (
-//   <div
-//     style={{
-//       width: 200,
-//       height: 200,
-//       backgroundColor: "blue",
-//     }}
-//   ></div>
-// );
-
-// const element = <div className="box"></div>;
-
-// function eventClick() {
-//   alert("Hello World");
-// }
-
-// function eventClickWithParam(msg) {
-//   alert(msg);
-// }
-
-// const element = (
-//   <button onClick={eventClickWithParam.bind(this, "Aku diklik nih")}>
-//     Klik Disini!
-//   </button>
-// );
-
 function App() {
-  const [count, setState] = React.useState(0);
-
-  // const count = state[0];
-  // const setState = state[1];
-
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+  const [click, setClick] = React.useState(false);
+  const [count, setCount] = React.useState(0);
+  React.useEffect(function () {
+    console.log(document.querySelector("#judul"));
+  }, [click, count]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", {
+    id: "judul"
+  }, "Hello ini judul"), /*#__PURE__*/React.createElement("button", {
     onClick: function () {
-      setState(count - 1);
+      setClick(true);
     }
-  }, "-"), /*#__PURE__*/React.createElement("span", null, count), /*#__PURE__*/React.createElement("button", {
+  }, "Klik Disini"), /*#__PURE__*/React.createElement("button", {
     onClick: function () {
-      setState(count + 1);
+      setCount(count + 1);
     }
-  }, "+"));
+  }, "Tambah"), /*#__PURE__*/React.createElement("p", null, count));
 }
-ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
+setTimeout(function () {
+  ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
+}, 1000);
