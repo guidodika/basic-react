@@ -1,37 +1,24 @@
 const root = document.querySelector("#root");
 
 function App() {
-  const [click, setClick] = React.useState(false);
-  const [count, setCount] = React.useState(0);
+  const [login, setLogin] = React.useState(false);
 
-  /*gunakan empty array [] jika function ini hanya di render sekali saja 
-  walaupun state berubah*/
-  React.useEffect(function () {
-    console.log(document.querySelector("#judul"));
-  }, []);
+  if (login) {
+    return <h1>Sukses Login</h1>;
+  }
 
   return (
     <>
-      <h1 id="judul">Hello ini judul</h1>
+      <h1>Halaman Login</h1>
       <button
         onClick={function () {
-          setClick(true);
+          setLogin(true);
         }}
       >
-        Klik Disini
+        Login
       </button>
-      <button
-        onClick={function () {
-          setCount(count + 1);
-        }}
-      >
-        Tambah
-      </button>
-      <p>{count}</p>
     </>
   );
 }
 
-setTimeout(function () {
-  ReactDOM.render(<App />, root);
-}, 1000);
+ReactDOM.render(<App />, root);
