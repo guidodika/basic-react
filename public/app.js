@@ -1,10 +1,10 @@
 const root = document.querySelector("#root");
 function App() {
-  const [login, setLogin] = React.useState(false);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Halaman Login"), /*#__PURE__*/React.createElement("p", null, login && /*#__PURE__*/React.createElement("b", null, "Berhasil Login")), /*#__PURE__*/React.createElement("button", {
-    onClick: function () {
-      setLogin(true);
-    }
-  }, "Login"));
+  const fruits = ["Apple", "Grape", "Watermelon", "Banana"];
+  return /*#__PURE__*/React.createElement("ul", null, fruits.map(function (fruit) {
+    return /*#__PURE__*/React.createElement("li", {
+      key: fruit
+    }, fruit);
+  }));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
