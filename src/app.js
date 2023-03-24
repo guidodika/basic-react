@@ -16,18 +16,37 @@ const root = document.querySelector("#root");
 // }
 
 //data fetching dengan async await
+
 function App() {
+  const [news, setNews] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
   React.useEffect(function () {
     async function getData() {
       const request = await fetch(
         "https://api.spaceflightnewsapi.net/v3/blogs"
       );
       const response = await request.json();
-      console.log(response);
+      setLoading(false);
+      setNews(response);
     }
     getData();
   }, []);
-  return <h1>Data Fetch</h1>;
+
+  return (
+    <>
+      <h1>Data Fetch</h1>
+      {loading ? (
+        <i>Loading</i>
+      ) : (
+        <ul>
+          {news.map(function (item) {
+            return <li>{item.title}</li>;
+          })}
+        </ul>
+      )}
+    </>
+  );
 }
 
 ReactDOM.render(<App />, root);
