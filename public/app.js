@@ -1,24 +1,30 @@
 const root = document.querySelector("#root");
+
+//data fetching dengan promises chaining
+// function App() {
+//   React.useEffect(function () {
+//     const getData = fetch("https://api.spaceflightnewsapi.net/v3/blogs")
+//       .then(function (response) {
+//         return response.json();
+//       })
+//       .then(function (response) {
+//         console.log(response);
+//       });
+//     console.log(getData);
+//   }, []);
+//   return <h1>Data Fetch</h1>;
+// }
+
+//data fetching dengan async await
 function App() {
-  //form react
-  //controlled component with state
-  //uncontrolled component with node dom (ref)
-  const [name, setName] = React.useState("Guido");
-  function submit(event) {
-    event.preventDefault();
-    console.log("Hai nama saya", name);
-  }
-  return /*#__PURE__*/React.createElement("form", {
-    onSubmit: submit
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", null, "Nama: "), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    name: "nama",
-    value: name,
-    onChange: function (event) {
-      setName(event.target.value);
+  React.useEffect(function () {
+    async function getData() {
+      const request = await fetch("https://api.spaceflightnewsapi.net/v3/blogs");
+      const response = await request.json();
+      console.log(response);
     }
-  })), /*#__PURE__*/React.createElement("button", {
-    type: "submit"
-  }, "Kirim"));
+    getData();
+  }, []);
+  return /*#__PURE__*/React.createElement("h1", null, "Data Fetch");
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
