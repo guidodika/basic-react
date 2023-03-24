@@ -41,7 +41,7 @@ function App() {
       ) : (
         <ul>
           {news.map(function (item) {
-            return <li>{item.title}</li>;
+            return <li key={item.id}>{item.title}</li>;
           })}
         </ul>
       )}

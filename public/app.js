@@ -30,7 +30,9 @@ function App() {
     getData();
   }, []);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "Data Fetch"), loading ? /*#__PURE__*/React.createElement("i", null, "Loading") : /*#__PURE__*/React.createElement("ul", null, news.map(function (item) {
-    return /*#__PURE__*/React.createElement("li", null, item.title);
+    return /*#__PURE__*/React.createElement("li", {
+      key: item.id
+    }, item.title);
   })));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
