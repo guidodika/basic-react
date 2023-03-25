@@ -4,10 +4,22 @@ function App() {
   const [activity, setActivity] = React.useState("");
   const [todos, setTodos] = React.useState([]);
 
+  //generate id agar bisa membedakan antar item state activity
+  //disini menggunakan tanggal untuk generate id
+  function generateId() {
+    return Date.now();
+  }
+
   function addToDoHandler(event) {
     event.preventDefault();
 
-    setTodos([...todos, activity]);
+    setTodos([
+      ...todos,
+      {
+        id: generateId(),
+        activity: activity,
+      },
+    ]);
     setActivity("");
   }
 
@@ -27,7 +39,7 @@ function App() {
       </form>
       <ul>
         {todos.map(function (todo) {
-          return <li key={todo}>{todo}</li>;
+          return <li key={todo.id}>{todo.activity}</li>;
         })}
       </ul>
     </>
