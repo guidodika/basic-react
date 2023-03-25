@@ -16,6 +16,15 @@ function App() {
     }]);
     setActivity("");
   }
+
+  //menghapus todo
+  function removeToDoHandler(todoId) {
+    const filteredToDo = todos.filter(function (todo) {
+      console.log(todoId, todo.id);
+      return todo.id !== todoId;
+    });
+    setTodos(filteredToDo);
+  }
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "To Do List"), /*#__PURE__*/React.createElement("form", {
     onSubmit: addToDoHandler
   }, /*#__PURE__*/React.createElement("input", {
@@ -28,7 +37,9 @@ function App() {
   }), /*#__PURE__*/React.createElement("button", null, "Tambahkan")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
-    }, todo.activity);
+    }, todo.activity, /*#__PURE__*/React.createElement("button", {
+      onClick: removeToDoHandler.bind(this, todo.id)
+    }, "Hapus"));
   })));
 }
 ReactDOM.render( /*#__PURE__*/React.createElement(App, null), root);
