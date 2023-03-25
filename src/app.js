@@ -2,6 +2,7 @@ const root = document.querySelector("#root");
 
 function App() {
   const [activity, setActivity] = React.useState("");
+  const [edit, setEdit] = React.useState({});
   const [todos, setTodos] = React.useState([]);
 
   //generate id agar bisa membedakan antar item state activity
@@ -10,8 +11,26 @@ function App() {
     return Date.now();
   }
 
-  function addToDoHandler(event) {
+  function saveToDoHandler(event) {
     event.preventDefault();
+
+    //edit todo
+    if (edit.id) {
+      const updateToDo = {
+        id: edit.id,
+        activity,
+      };
+
+      const editToDoIndex = todos.findIndex(function (todo) {
+        return todo.id == edit.id;
+      });
+
+      const updatedToDo = [...todos];
+
+      updatedToDo[editToDoIndex] = updateToDo;
+
+      return setTodos(updatedToDo);
+    }
 
     setTodos([
       ...todos,
@@ -33,10 +52,15 @@ function App() {
     setTodos(filteredToDo);
   }
 
+  function editToDoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
+
   return (
     <>
       <h1>To Do List</h1>
-      <form onSubmit={addToDoHandler}>
+      <form onSubmit={saveToDoHandler}>
         <input
           type="text"
           placeholder="Ketikkan sesuatu"
@@ -45,13 +69,14 @@ function App() {
             setActivity(event.target.value);
           }}
         />
-        <button>Tambahkan</button>
+        <button>{edit.id ? "Simpan Perubahan" : "Tambahkan"}</button>
       </form>
       <ul>
         {todos.map(function (todo) {
           return (
             <li key={todo.id}>
               {todo.activity}
+              <button onClick={editToDoHandler.bind(this, todo)}>Edit</button>
               <button onClick={removeToDoHandler.bind(this, todo.id)}>
                 Hapus
               </button>

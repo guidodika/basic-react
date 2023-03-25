@@ -1,6 +1,7 @@
 const root = document.querySelector("#root");
 function App() {
   const [activity, setActivity] = React.useState("");
+  const [edit, setEdit] = React.useState({});
   const [todos, setTodos] = React.useState([]);
 
   //generate id agar bisa membedakan antar item state activity
@@ -8,8 +9,22 @@ function App() {
   function generateId() {
     return Date.now();
   }
-  function addToDoHandler(event) {
+  function saveToDoHandler(event) {
     event.preventDefault();
+
+    //edit todo
+    if (edit.id) {
+      const updateToDo = {
+        id: edit.id,
+        activity
+      };
+      const editToDoIndex = todos.findIndex(function (todo) {
+        return todo.id == edit.id;
+      });
+      const updatedToDo = [...todos];
+      updatedToDo[editToDoIndex] = updateToDo;
+      return setTodos(updatedToDo);
+    }
     setTodos([...todos, {
       id: generateId(),
       activity: activity
@@ -25,8 +40,12 @@ function App() {
     });
     setTodos(filteredToDo);
   }
+  function editToDoHandler(todo) {
+    setActivity(todo.activity);
+    setEdit(todo);
+  }
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("h1", null, "To Do List"), /*#__PURE__*/React.createElement("form", {
-    onSubmit: addToDoHandler
+    onSubmit: saveToDoHandler
   }, /*#__PURE__*/React.createElement("input", {
     type: "text",
     placeholder: "Ketikkan sesuatu",
@@ -34,10 +53,12 @@ function App() {
     onChange: function (event) {
       setActivity(event.target.value);
     }
-  }), /*#__PURE__*/React.createElement("button", null, "Tambahkan")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
+  }), /*#__PURE__*/React.createElement("button", null, edit.id ? "Simpan Perubahan" : "Tambahkan")), /*#__PURE__*/React.createElement("ul", null, todos.map(function (todo) {
     return /*#__PURE__*/React.createElement("li", {
       key: todo.id
     }, todo.activity, /*#__PURE__*/React.createElement("button", {
+      onClick: editToDoHandler.bind(this, todo)
+    }, "Edit"), /*#__PURE__*/React.createElement("button", {
       onClick: removeToDoHandler.bind(this, todo.id)
     }, "Hapus"));
   })));
