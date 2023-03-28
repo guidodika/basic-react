@@ -24,7 +24,7 @@ function App() {
     //edit todo
     if (edit.id) {
       const updateToDo = {
-        id: edit.id,
+        ...edit,
         activity,
       };
 
@@ -46,6 +46,7 @@ function App() {
       {
         id: generateId(),
         activity: activity,
+        done: false,
       },
     ]);
 
@@ -76,6 +77,25 @@ function App() {
     setActivity("");
   }
 
+  function doneToDoHandler(todo) {
+    const updatedToDo = {
+      // id: todo.id,
+      // activity: todo.activity, (sama seperti ...todo)
+      ...todo,
+      done: todo.done ? false : true,
+    };
+
+    const editToDoIndex = todos.findIndex(function (currentTodo) {
+      return currentTodo.id == todo.id;
+    });
+
+    const updatedToDos = [...todos];
+
+    updatedToDos[editToDoIndex] = updatedToDo;
+
+    setTodos(updatedToDos);
+  }
+
   return (
     <>
       <h1>To Do List</h1>
@@ -97,7 +117,12 @@ function App() {
           {todos.map(function (todo) {
             return (
               <li key={todo.id}>
-                {todo.activity}
+                <input
+                  type="checkbox"
+                  checked={todo.done}
+                  onChange={doneToDoHandler.bind(this, todo)}
+                />
+                {todo.activity}({todo.done ? "Selesai" : "Belum Selesai"})
                 <button onClick={editToDoHandler.bind(this, todo)}>Edit</button>
                 <button onClick={removeToDoHandler.bind(this, todo.id)}>
                   Hapus
