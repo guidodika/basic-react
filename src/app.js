@@ -29,7 +29,9 @@ function App() {
 
       updatedToDo[editToDoIndex] = updateToDo;
 
-      return setTodos(updatedToDo);
+      setTodos(updatedToDo);
+
+      return cancelEditHandler();
     }
 
     setTodos([
@@ -50,11 +52,20 @@ function App() {
     });
 
     setTodos(filteredToDo);
+
+    if (edit.id) {
+      cancelEditHandler();
+    }
   }
 
   function editToDoHandler(todo) {
     setActivity(todo.activity);
     setEdit(todo);
+  }
+
+  function cancelEditHandler() {
+    setEdit({});
+    setActivity("");
   }
 
   return (
@@ -70,6 +81,7 @@ function App() {
           }}
         />
         <button>{edit.id ? "Simpan Perubahan" : "Tambahkan"}</button>
+        {edit.id && <button onClick={cancelEditHandler}>Batal Edit</button>}
       </form>
       <ul>
         {todos.map(function (todo) {
