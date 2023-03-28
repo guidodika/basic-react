@@ -4,6 +4,7 @@ function App() {
   const [activity, setActivity] = React.useState("");
   const [edit, setEdit] = React.useState({});
   const [todos, setTodos] = React.useState([]);
+  const [message, setMessage] = React.useState("");
 
   //generate id agar bisa membedakan antar item state activity
   //disini menggunakan tanggal untuk generate id
@@ -13,6 +14,12 @@ function App() {
 
   function saveToDoHandler(event) {
     event.preventDefault();
+
+    if (!activity) {
+      return setMessage("Aktifitas Tidak Boleh Kosong!");
+    }
+
+    setMessage("");
 
     //edit todo
     if (edit.id) {
@@ -41,6 +48,7 @@ function App() {
         activity: activity,
       },
     ]);
+
     setActivity("");
   }
 
@@ -71,6 +79,7 @@ function App() {
   return (
     <>
       <h1>To Do List</h1>
+      {message && <div style={{ color: "red" }}>{message}</div>}
       <form onSubmit={saveToDoHandler}>
         <input
           type="text"
@@ -83,19 +92,25 @@ function App() {
         <button>{edit.id ? "Simpan Perubahan" : "Tambahkan"}</button>
         {edit.id && <button onClick={cancelEditHandler}>Batal Edit</button>}
       </form>
-      <ul>
-        {todos.map(function (todo) {
-          return (
-            <li key={todo.id}>
-              {todo.activity}
-              <button onClick={editToDoHandler.bind(this, todo)}>Edit</button>
-              <button onClick={removeToDoHandler.bind(this, todo.id)}>
-                Hapus
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+      {todos.length > 0 ? (
+        <ul>
+          {todos.map(function (todo) {
+            return (
+              <li key={todo.id}>
+                {todo.activity}
+                <button onClick={editToDoHandler.bind(this, todo)}>Edit</button>
+                <button onClick={removeToDoHandler.bind(this, todo.id)}>
+                  Hapus
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p>
+          <i>Tidak ada aktifitas</i>
+        </p>
+      )}
     </>
   );
 }
